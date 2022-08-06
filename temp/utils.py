@@ -1,6 +1,3 @@
-from torch import rand
-
-
 try:
     import Adafruit_DHT
 
@@ -16,4 +13,6 @@ except ImportError:
     def get_humidity_temperature():
         return random.randint(30, 70), random.randint(20, 30)
 
-
+if __name__=="__main__":
+    humidity, temp = get_humidity_temperature()
+    print(f"{temp}°c, {humidity}%")
