@@ -1,47 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
     <title>Room Temperature</title>
-    <style>
-        body {
-            background-color: #282828;
-        }
-
-        #boxes {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        div {
-            float: left;
-            height: 200px;
-            width: 400px;
-            padding: 0 10px;
-            margin: 20px;
-            border-radius: 25px;
-        }
-
-        #column1 {
-            background-color: #b8bb26;
-            border: 2px solid #98971a;
-        }
-
-        #column2 {
-            background-color: #83a598;
-            border: 2px solid #458588;
-        }
-
-        h1 {
-            color: #ebdbb2;
-            padding: 20px;
-        }
-
-        h2 {
-            color: #000000;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'temp/styles.css' %}">
 </head>
 <body>
     <h1> Temperature </h1>
