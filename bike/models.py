@@ -1,8 +1,8 @@
 from unicodedata import decimal
 from django.db import models
+from django.urls import reverse
 
 
-# Create your models here.
 class Fuel(models.Model):
     bike = models.ForeignKey("Bike", models.CASCADE)
     fuel_date = models.DateTimeField('date fueled up')
@@ -16,7 +16,7 @@ class Fuel(models.Model):
         return "Fueling on {}: {}€".format(self.fuel_date, self.total_cost)
 
     def litre_per_100km(self) -> decimal:
-        return self.litre/self.km_trip * 100
+        return self.litre / self.km_trip * 100
 
 
 class Maintenance(models.Model):

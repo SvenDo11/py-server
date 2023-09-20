@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% csrf_token %}
+<html>
+<head>
+    {% load static %}
+    <title> Bike </title>
+    <link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+</head>
+<body>
+<h1> {{ bike.name }} </h1>
+    <p> This is the page of the bike {{ bike.name }}</p>
+</body>

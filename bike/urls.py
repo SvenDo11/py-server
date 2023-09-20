@@ -4,6 +4,7 @@ from . import views
 
 app_name = 'bike'
 urlpatterns = [
-    path("", views.FuelingView.as_view(), name="fueling"),
-    path("add_bike/", views.AddBikeView.as_view(), name="bike")
+    path("", views.IndexView.as_view(), name="bikeIndex"),
+    path("fuel", views.FuelingView.as_view(), name="fueling"),
+    path("add_bike/", views.AddBikeView.as_view(), name="bike"),
 ]

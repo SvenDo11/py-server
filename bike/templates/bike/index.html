@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Fueling</title>
+    <link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+</head>
+<body>
+<h1> All About That Bike </h1>
+<ul>
+    <li><a href="{% url 'bike:fueling' %}">Fueling Statistics</a></li>
+    <li><a href="{% url 'bike:bike' %}">Add a Bike</a></li>
+    <li>C</li>
+</ul>
+</body>
+</html>
