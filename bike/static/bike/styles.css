@@ -29,44 +29,54 @@
 }
 
 body {
+    margin: 0;
     background-color: var(--color-bg);
 }
 
-#boxes {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-div {
-    float: left;
-    height: 200px;
-    width: 400px;
-    padding: 0 10px;
-    margin: 20px;
-    border-radius: 25px;
-}
-
-#column1 {
-    background-color: #b8bb26;
-    border: 2px solid #98971a;
-}
-
-#column2 {
-    background-color: #83a598;
-    border: 2px solid #458588;
-}
-
 h1 {
-    color: #ebdbb2;
+    color: var(--color-fg);
     padding: 20px;
+    align-content: center;
+    margin-top: 40px;
+    width: 100%;
 }
 
 h2 {
-    color: #000000;
+    color: var(--color11);
     text-align: center;
+    align-content: center;
 }
 
-ul {
-    color: var(--color-fg)
+#navigationbar {
+    ul {
+        color: var(--color-fg);
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: var(--color-bg);
+    }
+
+    li {
+        float:left
+    }
+
+    li a {
+        display: block;
+        color: var(--color-fg);
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: var(--color8);
+    }
+
+    li a.active {
+        background-color: var(--color3);
+    }
 }

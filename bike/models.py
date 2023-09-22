@@ -31,4 +31,8 @@ class Maintenance(models.Model):
 
 class Bike(models.Model):
     ID = models.IntegerField("ID", primary_key=True)
-    name = models.CharField('Name of the bike', max_length=30)
+    name = models.CharField('Name', max_length=30)
+    manufacturer = models.CharField('Manufacturer', max_lenth=30)
+
+    def __str__(self) -> str:
+        return self.name

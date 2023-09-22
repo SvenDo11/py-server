@@ -1,0 +1,19 @@
+{% extends "bike/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+
+{% block title %}Bikes{% endblock %}
+
+{% block content %}
+    <h1>Bikes</h1>
+    {% if bike_list %}
+        <ul>
+            {% for bike in bike_list %}
+                <li><a href= {% url 'bike:bikeDelete' bike.ID %} >{{ bike }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No refueling are available.</p>
+    {% endif %}
+{% endblock %}
