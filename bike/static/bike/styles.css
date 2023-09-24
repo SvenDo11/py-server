@@ -26,10 +26,13 @@
 
     --color-fg: #ebdbb2;
     --color-bg: #282828;
+
+    --color-fg2: #1d2021;
+    --color-bg2: #d5c4a1;
 }
 
 body {
-    margin: 0;
+    margin: 10px;
     background-color: var(--color-bg);
 }
 
@@ -47,10 +50,43 @@ h2 {
     align-content: center;
 }
 
+p {
+    color: var(--color-fg);
+    padding: 20px;
+}
+
+button {
+    color: var(--color-fg2);
+    background-color: var(--color-bg2);
+    margin: 20px;
+}
+
+input {
+    color: var(--color-fg2);
+    background-color: var(--color-bg2);
+    margin: 20px;
+}
+
+ul {
+    color: var(--color-fg2);
+    background-color: var(--color-bg2);
+    border-radius: 20px;
+    list-style-type: none;
+    width: 500px;
+    padding: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-bg);
+}
+
+
 #navigationbar {
-    ul {
+    & ul {
         color: var(--color-fg);
         list-style-type: none;
+        border-radius: 0px;
         margin: 0;
         padding: 0;
         overflow: hidden;
@@ -60,11 +96,11 @@ h2 {
         background-color: var(--color-bg);
     }
 
-    li {
+    & li {
         float:left
     }
 
-    li a {
+    & li a {
         display: block;
         color: var(--color-fg);
         text-align: center;
@@ -72,11 +108,11 @@ h2 {
         text-decoration: none;
     }
 
-    li a:hover:not(.active) {
+    & li a:hover:not(.active) {
         background-color: var(--color8);
     }
 
-    li a.active {
+    & li a.active {
         background-color: var(--color3);
     }
 }

@@ -10,10 +10,11 @@
     {% if bike_list %}
         <ul>
             {% for bike in bike_list %}
-                <li><a href= {% url 'bike:bikeDelete' bike.ID %} >{{ bike }}</a></li>
+                <li><a href= {% url 'bike:bikeDetail' bike.ID %} >{{ bike }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No refueling are available.</p>
+        <p>No bikes are available.</p>
     {% endif %}
+    <button class="testButton" type="button" onclick="window.location.href='{% url 'bike:bikeCreate' %}';">Add Bike</button>
 {% endblock %}

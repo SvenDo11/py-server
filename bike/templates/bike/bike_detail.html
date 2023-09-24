@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-{% csrf_token %}
-<html>
-<head>
-    {% load static %}
-    <title> Bike </title>
-    <link rel="stylesheet" href="{% static 'bike/styles.css' %}">
-</head>
-<body>
-<h1> {{ bike.name }} </h1>
-    <p> This is the page of the bike {{ bike.name }}</p>
-</body>
+{% extends "bike/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+
+{% block title %}Bike Detail{% endblock %}
+
+{% block content %}
+{% if bike %}
+    <h1>{{ bike.name }}</h1>
+    <p>Manufactuerer: {{ bike.manufacturer }}</p>
+    <p>Initial Odometer: {{ bike.initial_odometer }} </p>
+    <button type="button" onclick="window.location.href='{% url 'bike:bikeUpdate' bike.ID %}';">Edit</button>
+    <button type="button" onclick="window.location.href='{% url 'bike:bikeDelete' bike.ID %}';">Delete</button>
+{% else %}
+    <p> Bike Not Found </p>
+{% endif %}
+{% endblock %}

@@ -10,10 +10,11 @@
     {% if fueling_list %}
         <ul>
             {% for fueling in fueling_list %}
-                <li>Fueling on {{ fueling.fuel_date }}:</li>
+            <li><a href={% url 'bike:refuelingDetail' fueling.id %}>Fueling on {{ fueling.fuel_date }}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <p>No refueling are available.</p>
     {% endif %}
+    <button class="testButton" type="button" onclick="window.location.href='{% url 'bike:refuelingCreate' %}';">Add Refueling</button>
 {% endblock %}
