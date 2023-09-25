@@ -81,6 +81,10 @@ a {
     color: var(--color-bg);
 }
 
+.main-svg {
+    border-radius: 20px;
+    color: var(--color-fg);
+}
 
 #navigationbar {
     & ul {

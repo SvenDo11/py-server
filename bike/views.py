@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import Bike, Fuel
+from .plots import get_test_plot
 
 bike_fields = ["name", "manufacturer", "initial_odometer"]
 refueling_fields = ["bike", "fuel_date", "quantity", "cost_per_litre", "total_cost", "km_trip", "km_total"]
@@ -12,6 +13,7 @@ class IndexView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "home"
+        context['test_plot'] = get_test_plot()
         return context
 
 
