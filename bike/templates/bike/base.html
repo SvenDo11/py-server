@@ -2,13 +2,14 @@
 <html>
 <head>
     {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'bike/styles.css' %}">
     <base href="{% static '/' %}">
     <title>{% block title %}Bike Statistics{% endblock %}</title>
 </head>
 
 <body>
-<div id="navigationbar">
+<div class="navbar">
     <ul>
         <li><a {% if navigationbar_active == "home" %}class="active"{% endif %} href="{% url 'bike:bikeIndex' %}">Home</a></li>
         <li><a {% if navigationbar_active == "bikes" %}class="active"{% endif %} href="{% url 'bike:bikeList' %}">Bikes</a></li>
@@ -16,7 +17,7 @@
         <li><a {% if navigationbar_active == "maintanance" %}class="active"{% endif %} href="{% url 'bike:bikeIndex' %}">Maintanance</a></li>
     </ul>
 </div>
-<div id="content">
+<div class="content">
     {% block content %}
     <p>
         Your Content should be displayed here.

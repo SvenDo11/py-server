@@ -7,6 +7,18 @@
 
 {% block content %}
     <h1>Refueling</h1>
+    <div>
+    <form action="" method="get">
+        {{ filter.form }}
+        <p>
+            {% if display_clear %}
+            <input type="button" value="Clear" onclick="window.location.href='{% url 'bike:refuelingList' %}';"/>
+            {% endif %}
+            <input type="submit"/>
+        </p>
+    </form>
+    </div>
+    <hr/>
     {% if fueling_list %}
         <ul>
             {% for fueling in fueling_list %}
@@ -16,5 +28,7 @@
     {% else %}
         <p>No refueling are available.</p>
     {% endif %}
-    <button class="testButton" type="button" onclick="window.location.href='{% url 'bike:refuelingCreate' %}';">Add Refueling</button>
+    <p>
+        <button type="button" onclick="window.location.href='{% url 'bike:refuelingCreate' %}';">Add Refueling</button>
+    </p>
 {% endblock %}
