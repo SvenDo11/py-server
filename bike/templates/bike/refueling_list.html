@@ -31,4 +31,10 @@
     <p>
         <button type="button" onclick="window.location.href='{% url 'bike:refuelingCreate' %}';">Add Refueling</button>
     </p>
+    {% if plot %}
+        {% autoescape off %}
+            <hr/>
+            {{ plot }}
+        {% endautoescape %}
+    {% endif %}
 {% endblock %}

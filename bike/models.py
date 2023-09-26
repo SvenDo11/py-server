@@ -16,7 +16,7 @@ class Fuel(models.Model):
         return "Fueling on {}: {}€".format(self.fuel_date, self.total_cost)
 
     def litre_per_100km(self) -> decimal:
-        return self.litre / self.km_trip * 100
+        return self.quantity / self.km_trip * 100
 
     def get_absolute_url(self):
         return reverse_lazy("bike:refuelingDetail", kwargs={"pk": self.id})

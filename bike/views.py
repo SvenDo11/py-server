@@ -3,7 +3,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django_filters.views import FilterView
 from .models import Bike, Fuel
-from .plots import get_test_plot
+from .plots import get_test_plot, fuel_economy
 import django_filters as dj_filters
 
 bike_fields = ["name", "manufacturer", "initial_odometer"]
@@ -16,13 +16,12 @@ class IndexView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "home"
-        context['test_plot'] = get_test_plot()
         return context
 
 
 class RefuelingFilter(dj_filters.FilterSet):
-    fuel_date__lt = dj_filters.DateTimeFilter(field_name="fuel_date", lookup_expr='lt', label="From")
-    fuel_date__gt = dj_filters.DateTimeFilter(field_name="fuel_date", lookup_expr='gt', label="Till")
+    fuel_date__gt = dj_filters.DateTimeFilter(field_name="fuel_date", lookup_expr='gt', label="From")
+    fuel_date__lt = dj_filters.DateTimeFilter(field_name="fuel_date", lookup_expr='lt', label="Till")
 
     class Meta:
         model = Fuel
@@ -46,9 +45,8 @@ class RefuelingListView(FilterView):
         context['navigationbar_active'] = "refueling"
         if self.showClear:
             context['display_clear'] = "true"
-        for obj in context['object_list']:
-            print(obj.fuel_date)
-
+        if len(context['object_list']) > 0:
+            context['plot'] = fuel_economy(context['object_list'])
         return context
 
 
@@ -80,7 +78,7 @@ class RefuelingCreateView(generic.CreateView):
 
 class RefuelingDeleteView(generic.DeleteView):
     model = Fuel
-    template_name_suffix = "_delete"
+    template_name = "bike/refueling_delete.html"
     success_url = reverse_lazy("bike:refuelingList")
 
     def get_context_data(self, **kwargs):
