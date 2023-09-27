@@ -6,35 +6,92 @@
 {% block title %}Refueling{% endblock %}
 
 {% block content %}
-    <h1>Refueling</h1>
-    <div>
-    <form action="" method="get">
-        {{ filter.form }}
-        <p>
-            {% if display_clear %}
-            <input type="button" value="Clear" onclick="window.location.href='{% url 'bike:refuelingList' %}';"/>
-            {% endif %}
-            <input type="submit"/>
-        </p>
-    </form>
+    <div style="display: flex; align-items: center">
+        <h1>Refueling</h1>
+        <div style="margin-left: auto">
+            <button type="button" style="height: fit-content; margin-left: 20px;" onclick="window.location.href='{% url 'bike:refuelingCreate' %}';">Add Refueling</button>
+            <button type="button" style="height: fit-content; margin-left: 10px;" onclick="toggleVisible('filterBox')">Filter</button>
+        </div>
+    </div>
+    <div id="filterBox">
+        <form action="" method="get">
+            {{ filter.form }}
+            <div style="display: flex;">
+                <p style="margin-left: auto">
+                    {% if display_clear %}
+                        <input type="button" value="Clear" style="margin-left: unset;"
+                               onclick="window.location.href='{% url 'bike:refuelingList' %}';"/>
+                    {% endif %}
+                    <input type="submit" style="margin-left: 20px;"/>
+                </p>
+            </div>
+        </form>
     </div>
     <hr/>
+    <h2>Results:</h2>
     {% if fueling_list %}
-        <ul>
-            {% for fueling in fueling_list %}
-            <li><a href={% url 'bike:refuelingDetail' fueling.id %}>Fueling on {{ fueling.fuel_date }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="Listcontainer">
+            <div class="list">
+                <ul>
+                    {% for fueling in fueling_list %}
+                        <li><a href={% url 'bike:refuelingDetail' fueling.id %}>Fueling on {{ fueling.fuel_date }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if plot_1 %}
+                <div style="display: flex; align-items: center">
+                    <h2>Plot:</h2>
+                    <label for="plotSelect" style="margin-left: auto; height: fit-content">Select Figure:</label>
+                    <select name="plots" id="plotSelect" style="margin-left: 10px; height: fit-content"
+                            onchange="selectPlot(this.value)">
+                        <option selected="selected">Fuel Economy</option>
+                        <option>Fuel Prices</option>
+                        <option>Odometer</option>
+                    </select>
+                </div>
+                {% autoescape off %}
+                    <div class="plot">
+                        <div id="plot_1">
+                            {{ plot_1 }}
+                        </div>
+                        <div id="plot_2" style="display: none">
+                            {{ plot_2 }}
+                        </div>
+                        <div id="plot_3" style="display: none">
+                            {{ plot_3 }}
+                        </div>
+                    </div>
+                {% endautoescape %}
+            {% endif %}
+        </div>
     {% else %}
         <p>No refueling are available.</p>
     {% endif %}
-    <p>
-        <button type="button" onclick="window.location.href='{% url 'bike:refuelingCreate' %}';">Add Refueling</button>
-    </p>
-    {% if plot %}
-        {% autoescape off %}
-            <hr/>
-            {{ plot }}
-        {% endautoescape %}
-    {% endif %}
+
+    <script>
+        function toggleVisible(elemID, displayType = "block") {
+          let elem = document.getElementById(elemID);
+          if (elem.style.display === "none") {
+            elem.style.display = displayType;
+          } else {
+            elem.style.display = "none";
+          }
+        }
+
+        function selectPlot(plot) {
+            let plots = {
+                "Fuel Economy": "plot_1",
+                "Fuel Prices": "plot_2",
+                "Odometer": "plot_3",
+            }
+            let plot_num = 3
+            for(let ii = 1; ii <= plot_num; ii += 1) {
+                let elem = document.getElementById("plot_"+ii)
+                elem.style.display = "none";
+            }
+            let elem = document.getElementById(plots[plot])
+            elem.style.display = "block";
+        }
+    </script>
+
 {% endblock %}

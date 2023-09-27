@@ -5,7 +5,7 @@ from django_filters.views import FilterView
 import django_filters as dj_filters
 
 from ..models import Fuel
-from ..plots import fuel_economy
+from ..plots import fuel_economy, fuel_price, fuel_odometer
 
 refueling_fields = ["bike", "fuel_date", "quantity", "cost_per_litre", "total_cost", "km_trip", "km_total"]
 
@@ -43,7 +43,9 @@ class ListView(FilterView):
         if self.showClear:
             context['display_clear'] = "true"
         if len(context['object_list']) > 0:
-            context['plot'] = fuel_economy(context['object_list'])
+            context['plot_1'] = fuel_economy(context['object_list'])
+            context['plot_2'] = fuel_price(context['object_list'])
+            context['plot_3'] = fuel_odometer(context['object_list'])
         return context
 
 
