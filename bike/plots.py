@@ -28,7 +28,7 @@ def fuel_base(fuel_set: query.QuerySet, y_label: str, attr: str, attr_is_functio
 
     data = pd.DataFrame(dict(Date=x_, Attr=y_))
     fig = px.line(data, x="Date", y="Attr", template="plotly_white", markers=True,
-                  labels={'Date': "Date", 'Atr': y_label})
+                  labels={'Date': "Date", 'Attr': y_label})
     fig.update_traces(marker=dict(color=Color.get("color2")), line=dict(color=Color.get("color10")))
     fig.update_layout(paper_bgcolor=Color.get("color-bg2"), autosize=False)
 
