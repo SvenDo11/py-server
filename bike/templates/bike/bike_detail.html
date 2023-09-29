@@ -8,11 +8,16 @@
 {% block content %}
 {% if bike %}
     <h1>{{ bike.name }}</h1>
-    <p>Manufactuerer: {{ bike.manufacturer }}</p>
-    <p>Initial Odometer: {{ bike.initial_odometer }} </p>
-    <button type="button" onclick="window.location.href='{% url 'bike:bikeUpdate' bike.ID %}';">Edit</button>
-    <button type="button" onclick="window.location.href='{% url 'bike:bikeDelete' bike.ID %}';">Delete</button>
+    <div class="boxBody">
+        <div class="itemBox">
+            <p>Manufactuerer: {{ bike.manufacturer }}</p>
+            <p>Initial Odometer: {{ bike.initial_odometer }}</p>
+            <button type="button" onclick="window.location.href='{% url 'bike:bikeUpdate' bike.ID %}';">Edit</button>
+            <button type="button" onclick="window.location.href='{% url 'bike:bikeDelete' bike.ID %}';">Delete</button>
+        </div>
+    </div>
 {% else %}
+    <h1>Bike Details</h1>
     <p> Bike Not Found </p>
 {% endif %}
 {% endblock %}

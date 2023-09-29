@@ -7,8 +7,12 @@
 
 {% block content %}
     <h1> Add a new Refueling </h1>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
+    <div class="boxBody">
+        <div class="itemBox">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
 {% endblock %}

@@ -6,9 +6,18 @@
 {% block title %}Edit Bike{% endblock %}
 
 {% block content %}
-<h1> Edit Bike {{ bike.name }}</h1>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update">
-    </form>
+    {% if bike %}
+        <h1> Edit Bike {{ bike.name }}</h1>
+        <div class="boxBody">
+            <div class="itemBox">
+                <form method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <h1>Edit Bike</h1>
+        <p>Bike not found</p>
+    {% endif %}
 {% endblock %}

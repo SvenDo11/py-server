@@ -65,7 +65,7 @@ class DetailView(generic.DetailView):
 
 class CreateView(generic.CreateView):
     model = Fuel
-    template_name = 'bike/bike_create.html'
+    template_name = 'bike/refueling_create.html'
     fields = refueling_fields
     success_url = reverse_lazy("bike:refuelingList")
 

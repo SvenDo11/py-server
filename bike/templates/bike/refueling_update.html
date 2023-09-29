@@ -3,12 +3,16 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'bike/styles.css' %}">
 
-{% block title %}Edit Bike{% endblock %}
+{% block title %}Edit Refueling{% endblock %}
 
 {% block content %}
-<h1> Edit Bike {{ bike.name }}</h1>
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update">
-    </form>
+    <h1>Edit Refueling {{ form.refueling.name }}</h1>
+    <div class="boxBody">
+        <div class="itemBox">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
 {% endblock %}

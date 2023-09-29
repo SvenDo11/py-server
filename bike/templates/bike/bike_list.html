@@ -6,15 +6,23 @@
 {% block title %}Bikes{% endblock %}
 
 {% block content %}
-    <h1>Bikes</h1>
+    <div style="display: flex; align-items: center">
+        <h1>Bikes</h1>
+        <div style="margin-left: auto">
+            <button type="button" onclick="window.location.href='{% url 'bike:bikeCreate' %}';">Add Bike</button>
+        </div>
+    </div>
     {% if bike_list %}
-        <ul>
-            {% for bike in bike_list %}
-                <li><a href= {% url 'bike:bikeDetail' bike.ID %} >{{ bike }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="boxBody">
+            <div class="itemBox">
+                <ul>
+                    {% for bike in bike_list %}
+                        <li><a href= {% url 'bike:bikeDetail' bike.ID %} >{{ bike.manufacturer }}  {{ bike.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     {% else %}
         <p>No bikes are available.</p>
     {% endif %}
-    <button class="testButton" type="button" onclick="window.location.href='{% url 'bike:bikeCreate' %}';">Add Bike</button>
 {% endblock %}

@@ -8,16 +8,25 @@
 {% block content %}
 {% if fuel %}
     <h1>{{ fuel }}</h1>
-    <p>Fueling Date: {{ fuel.fuel_date }}</p>
-    <p>Quantity: {{ fuel.quantity }}L </p>
-    <p>Cost: {{ fuel.cost_per_litre }}€/L</p>
-    <p>Total: {{ fuel.total_cost }}€</p>
-    <p>Trip: {{ fuel.km_trip }}km</p>
-    <p>Odometer Reading: {{ fuel.km_total }}km</p>
-    <p>Bike: {{ fuel.bike }}</p>
-    <button type="button" onclick="window.location.href='{% url 'bike:refuelingUpdate' fuel.id %}';">Edit</button>
-    <button type="button" onclick="window.location.href='{% url 'bike:refuelingDelete' fuel.id %}';">Delete</button>
+    <div class="boxBody">
+        <div class="itemBox">
+            <p>Fueling Date: {{ fuel.fuel_date }}</p>
+            <p>Quantity: {{ fuel.quantity }}L </p>
+            <p>Cost: {{ fuel.cost_per_litre }}€/L</p>
+            <p>Total: {{ fuel.total_cost }}€</p>
+            <p>Trip: {{ fuel.km_trip }}km</p>
+            <p>Odometer Reading: {{ fuel.km_total }}km</p>
+            <p>Bike: {{ fuel.bike }}</p>
+            <button type="button" onclick="window.location.href='{% url 'bike:refuelingUpdate' fuel.id %}';">Edit</button>
+            <button type="button" onclick="window.location.href='{% url 'bike:refuelingDelete' fuel.id %}';">Delete</button>
+        </div>
+    </div>
 {% else %}
-    <p> Refueling Not Found </p>
+    <h1>Refueling Detail</h1>
+    <div class="boxBody">
+        <div class="itemBox">
+            <p> Refueling Not Found </p>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}
