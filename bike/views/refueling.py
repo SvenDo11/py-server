@@ -65,33 +65,39 @@ class DetailView(generic.DetailView):
 
 class CreateView(generic.CreateView):
     model = Fuel
-    template_name = 'bike/refueling_create.html'
+    template_name = 'bike/t_create.html'
     fields = refueling_fields
     success_url = reverse_lazy("bike:refuelingList")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "refueling"
+        context['title'] = "Add Refueling"
+        context['header'] = "Add a new Refueling"
         return context
 
 
 class DeleteView(generic.DeleteView):
     model = Fuel
-    template_name = "bike/refueling_delete.html"
+    template_name = "bike/t_delete.html"
     success_url = reverse_lazy("bike:refuelingList")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "refueling"
+        context['title'] = "Delete Refueling"
+        context['header'] = "Delete the Refueling?"
         return context
 
 
 class UpdateView(generic.UpdateView):
     model = Fuel
-    template_name = "bike/refueling_update.html"
+    template_name = "bike/t_update.html"
     fields = refueling_fields
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "refueling"
+        context['title'] = "Edit Refueling"
+        context['header'] = "Edit Refueling:"
         return context

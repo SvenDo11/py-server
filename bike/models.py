@@ -24,19 +24,23 @@ class Fuel(models.Model):
 
 class Maintenance(models.Model):
     bike = models.ForeignKey("Bike", models.CASCADE)
-    date = models.DateTimeField('Date of maintenance work')
-    maintenance_type = models.IntegerField('Type of done maintenance work')
+    date = models.DateField('Date of maintenance work')
+    maintenance_type = models.ForeignKey("MaintenanceType", models.CASCADE)
     cost = models.DecimalField('Total cost of maintenance', max_digits=3, decimal_places=2)
 
     def __str__(self) -> str:
         return "{} done on {}".format(self.maintenance_type, self.date)
 
 
+class MaintenanceType(models.Model):
+    name = models.CharField('Name', max_length=30)
+
+
 class Bike(models.Model):
     ID = models.IntegerField("ID", primary_key=True)
     name = models.CharField('Name', max_length=30)
     manufacturer = models.CharField('Manufacturer', max_length=30)
-    initial_odometer = models.IntegerField("Initial Odometer Reading", default = 0)
+    initial_odometer = models.IntegerField("Initial Odometer Reading", default=0)
 
     def __str__(self) -> str:
         return self.name

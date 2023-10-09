@@ -1,0 +1,29 @@
+{% extends "bike/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+
+{% block title %}Maintenance{% endblock %}
+
+{% block content %}
+{% if fuel %}
+    <h1>{{ fuel }}</h1>
+    <div class="boxBody">
+        <div class="itemBox">
+            <p>Bike: {{ maintenance.bike }}</p>
+            <p>Date: {{ maintenance.date }}</p>
+            <p>Type: {{ maintenance.maintenance_type }}</p>
+            <p>Cost: {{ maintenance.cost }}</p>
+            <button type="button" onclick="window.location.href='{% url 'bike:maintenanceUpdate' fuel.id %}';">Edit</button>
+            <button type="button" onclick="window.location.href='{% url 'bike:maintenanceDelete' fuel.id %}';">Delete</button>
+        </div>
+    </div>
+{% else %}
+    <h1>Maintenance Detail</h1>
+    <div class="boxBody">
+        <div class="itemBox">
+            <p> Maintenance Not Found </p>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

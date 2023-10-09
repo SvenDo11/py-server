@@ -31,13 +31,15 @@ class DetailView(generic.DetailView):
 
 class CreateView(generic.CreateView):
     model = Bike
-    template_name = 'bike/bike_create.html'
+    template_name = 'bike/t_create.html'
     fields = bike_fields
     success_url = reverse_lazy("bike:bikeList")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "bikes"
+        context['title'] = "Add Bike"
+        context['header'] = "Add a new Bike"
         return context
 
 
@@ -49,15 +51,19 @@ class DeleteView(generic.DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "bikes"
+        context['title'] = "Delete Bike"
+        context['header'] = "Delete the Bike?"
         return context
 
 
 class UpdateView(generic.UpdateView):
     model = Bike
-    template_name = "bike/bike_update.html"
+    template_name = "bike/t_update.html"
     fields = bike_fields
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['navigationbar_active'] = "bikes"
+        context['title'] = "Edit Bike"
+        context['header'] = "Edit the Bike:"
         return context

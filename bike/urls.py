@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import IndexView, bike, refueling
+from .views import IndexView, bike, refueling, maintenance
 
 app_name = 'bike'
 urlpatterns = [
@@ -15,4 +15,9 @@ urlpatterns = [
     path("bikes/<int:pk>/delete/", bike.DeleteView.as_view(), name='bikeDelete'),
     path("bikes/<int:pk>/edit/", bike.UpdateView.as_view(), name="bikeUpdate"),
     path("bikes/addBike", bike.CreateView.as_view(), name="bikeCreate"),
+    path("maintenance", maintenance.ListView.as_view(), name="maintenanceList"),
+    path("maintenance/<int:pk>/details/", maintenance.DetailView.as_view(), name="maintenanceDetail"),
+    path("maintenance/<int:pk>/delete/", maintenance.DeleteView.as_view(), name='maintenanceDelete'),
+    path("maintenance/<int:pk>/edit/", maintenance.UpdateView.as_view(), name="maintenanceUpdate"),
+    path("maintenance/addBike", maintenance.CreateView.as_view(), name="maintenanceCreate"),
 ]

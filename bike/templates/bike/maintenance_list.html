@@ -1,0 +1,61 @@
+{% extends "bike/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+
+{% block title %}Maintenance{% endblock %}
+
+{% block content %}
+    <div style="display: flex; align-items: center">
+        <h1>Maintenance Statistics</h1>
+        <div style="margin-left: auto">
+            <button type="button" onclick="window.location.href='{% url 'bike:maintenanceCreate' %}';">Add Maintenance</button>
+            <button type="button" onclick="toggleVisible('filterBox')">Filter</button>
+        </div>
+    </div>
+    <div class="boxBody">
+        <div class="itemBox" id="filterBox">
+            <h2>Filter</h2>
+            <form action="" method="get">
+                {{ filter.form.as_p}}
+                <div style="display: flex;">
+                    <p style="margin-left: auto">
+                        {% if display_clear %}
+                            <input type="button" value="Clear" style="margin-left: unset;"
+                                   onclick="window.location.href='{% url 'bike:maintenanceList' %}';"/>
+                        {% endif %}
+                        <input type="submit" style="margin-left: 20px;"/>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        {% if maintenance_list %}
+            <div class="itemBox">
+                <h2>Refueling List</h2>
+                <ul>
+                    {% for maintenance in maintenance_list %}
+                        <li><a href={% url 'bike:maintenanceDetail' maintenance.id %}>{{ maintenance_list }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% else %}
+            <div class="itemBox">
+                <p>No maintenance entries available!</p>
+                <p>If set, please try to adjust the filter to get more items.</p>
+                <p>Otherwise try <a href={% url 'bike:maintenanceCreate' %}>adding</a> more maintenance entries.</p>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        function toggleVisible(elemID, displayType = "block") {
+            let elem = document.getElementById(elemID);
+            if (elem.style.display === "none") {
+                elem.style.display = displayType;
+            } else {
+                elem.style.display = "none";
+            }
+        }
+    </script>
+{% endblock %}

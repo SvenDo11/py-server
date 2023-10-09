@@ -15,7 +15,7 @@
                 <li><a {% if navigationbar_active == "home" %}class="active"{% endif %} href="{% url 'bike:bikeIndex' %}">Home</a></li>
                 <li><a {% if navigationbar_active == "bikes" %}class="active"{% endif %} href="{% url 'bike:bikeList' %}">Bikes</a></li>
                 <li><a {% if navigationbar_active == "refueling" %}class="active"{% endif %} href="{% url 'bike:refuelingList' %}">Refueling</a></li>
-                <li><a {% if navigationbar_active == "maintanance" %}class="active"{% endif %} href="{% url 'bike:bikeIndex' %}">Maintanance</a></li>
+                <li><a {% if navigationbar_active == "maintenance" %}class="active"{% endif %} href="{% url 'bike:maintenanceList' %}">Maintenance</a></li>
             </ul>
         </nav>
     </header>

@@ -1,0 +1,18 @@
+{% extends "bike/base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'bike/styles.css' %}">
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ header }}</h1>
+    <div class="boxBody">
+        <div class="itemBox">
+            <form method="post">{% csrf_token %}
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+                <input type="submit" value="Confirm">
+            </form>
+        </div>
+    </div>
+{% endblock %}
